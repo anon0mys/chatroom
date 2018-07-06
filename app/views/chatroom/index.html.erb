@@ -1,1 +1,15 @@
 <%= link_to 'Log Out', logout_path %>
+
+<h3>Messages</h3>
+<div class="messages">
+
+</div>
+
+<h3>Chat</h3>
+
+<%= form_for @message, url: '#' do |f| %>
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+
+  <%= f.submit 'Post' %>
+<% end %>

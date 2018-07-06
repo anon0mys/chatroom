@@ -4,7 +4,7 @@ App.chat = App.cable.subscriptions.create "ChatChannel",
 
     appendLine: (data) ->
       html = @createLine(data)
-      $("[data-chat-room='chat_channel']").append(html)
+      $("messages").append(html)
 
     createLine: (data) ->
       """
@@ -13,3 +13,9 @@ App.chat = App.cable.subscriptions.create "ChatChannel",
         <span class='chat-body'>#{data['body']}</span>
       </article>
       """
+
+  $('#new_message').submit (e) ->
+    $this = $(this)
+    textarea = $this.find('#message_body')
+      App.global_chat.send_message textarea.val(), messages.data('chat-room-id')
+      textarea.val('')
