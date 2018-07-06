@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: 'home#index'
+  resources :users, only: %i[create]
+  get '/create-account', to: 'users#new', as: 'new_user'
+  resources :sessions, only: %i[create new]
+  get '/logout', to: 'sessions#destroy', as: 'logout'
+  get '/chatroom', to: 'chatroom#index', as: 'chatroom'
 end
